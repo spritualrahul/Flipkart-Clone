@@ -1,6 +1,11 @@
-import Navbar from "./Navbar"
+import Navbar from './Navbar';
+import Banner from './Home/Banner';
 export default function Home() {
   return (
-   <Navbar/>
+    <div>
+       <Navbar/>
+       <Banner/>
+    </div>
+  
   )
 }
