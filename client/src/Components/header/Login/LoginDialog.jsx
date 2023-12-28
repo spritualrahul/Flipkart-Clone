@@ -13,6 +13,10 @@ background: #2874f0 url(https://static-assets-web.flixcart.com/www/linchpin/fk-c
 height:100%;
 width: 40%;
 padding: 45px 35px;
+   &>p, &> h5{
+  color:white;
+  font-weight:600;
+}
 `;
 
 const Wrapper =styled(Box)`
