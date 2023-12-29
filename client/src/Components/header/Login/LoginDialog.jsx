@@ -1,4 +1,5 @@
 import React from 'react'
+import { useState } from 'react';
 import{Dialog,Box,TextField,Button, Typography,styled} from'@mui/material';
 
 //css to MUI components
@@ -59,15 +60,37 @@ const CreateAccount = styled(Typography)`
   color:#2874f0;
   font-weight:600;
   cursor:pointer;
-`
+`;
+
+
+const accountInitialValues ={
+  login:{
+       view : 'login'
+  },
+
+  signup:{
+       view: 'signup'
+  }
+}
 
 
 export default function LoginDialog({open,setOpen}) {
 
+  const [account, toggleAccount]=useState(accountInitialValues.login);
+
     const handleClose=()=>{
-        setOpen(false);
+        setOpen(true);
     }
+
+    const toggleSignup = ()=>{
+      toggleAccount(accountInitialValues.signup);
+    }
+   
+
+
   return (
+
+    
     <Dialog open={open}onClose={handleClose}>
         <Component>
             <Box style={{display:"flex",height:"100%"}}>
@@ -75,15 +98,33 @@ export default function LoginDialog({open,setOpen}) {
                 <Typography variant='h5'>Login</Typography>
                 <Typography style={{marginTop:20}}>Get access to your orders, Wishlist and Recommendations</Typography>
             </Image>
-             <Wrapper>
-                <TextField variant='standard' label='enter email/mobile number'/>
-                <TextField variant='standard' label='enter Password'/>
-                <Text>By continuing you agree to flipkart's Term of use and privacy Policy.</Text>
-                <LoginButton>Login</LoginButton>
-                <Typography style={{textAlign:'center'}}>OR</Typography>
-                <RequestOTP>Request OTP</RequestOTP>
-                <CreateAccount>New to Flipkart? Create an account</CreateAccount>
-              </Wrapper>
+            {
+              account.view==='login'?
+                        <Wrapper>
+                        <TextField variant='standard' label='enter email/mobile number'/>
+                        <TextField variant='standard' label='enter Password'/>
+                        <Text>By continuing you agree to flipkart's Term of use and privacy Policy.</Text>
+                        <LoginButton>Login</LoginButton>
+                        <Typography style={{textAlign:'center'}}>OR</Typography>
+                        <RequestOTP>Request OTP</RequestOTP>
+                        <CreateAccount onClick={()=> toggleSignup()}>New to Flipkart? Create an account</CreateAccount>
+                      </Wrapper>
+
+                :
+
+                      <Wrapper>
+                      <TextField variant='standard' label='Enter First Name'/>
+                      <TextField variant='standard' label='Enter Last Name'/>
+                      <TextField variant='standard' label='Enter Username'/>
+                      <TextField variant='standard' label='Enter Email'/>
+                      <TextField variant='standard' label='Enter Password'/>
+                      <TextField variant='standard' label='Enter Phone'/>
+                      
+
+                      <LoginButton>Continue</LoginButton>
+                    </Wrapper>
+            }
+             
             </Box>
         </Component>
     </Dialog>
