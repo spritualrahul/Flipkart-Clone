@@ -77,6 +77,15 @@ const accountInitialValues ={
   }
 }
 
+const signUpInitialValues = {
+  firstname:"",
+  lastname : "",
+  username : "",
+  email : "",
+  password : "",
+  phone : ""
+}
+
 
 export default function LoginDialog({open,setOpen}) {
 
@@ -89,6 +98,11 @@ export default function LoginDialog({open,setOpen}) {
 
     const toggleSignup = ()=>{
       toggleAccount(accountInitialValues.signup);
+    }
+
+    const onInputChange=(e)=>{
+      console.log(e.target.value);
+
     }
    
 
@@ -118,12 +132,12 @@ export default function LoginDialog({open,setOpen}) {
                 :
 
                       <Wrapper>
-                      <TextField variant='standard' label='Enter First Name'/>
-                      <TextField variant='standard' label='Enter Last Name'/>
-                      <TextField variant='standard' label='Enter Username'/>
-                      <TextField variant='standard' label='Enter Email'/>
-                      <TextField variant='standard' label='Enter Password'/>
-                      <TextField variant='standard' label='Enter Phone'/>
+                      <TextField variant='standard' onChange={(e)=>onInputChange(e)} name='firstname' label='Enter First Name'/>
+                      <TextField variant='standard' onChange={(e)=>onInputChange(e)} name='lastname' label='Enter Last Name'/>
+                      <TextField variant='standard' onChange={(e)=>onInputChange(e)} name='username' label='Enter Username'/>
+                      <TextField variant='standard' onChange={(e)=>onInputChange(e)} name='email' label='Enter Email'/>
+                      <TextField variant='standard' onChange={(e)=>onInputChange(e)} name='password' label='Enter Password'/>
+                      <TextField variant='standard' onChange={(e)=>onInputChange(e)} name='phone' label='Enter Phone'/>
                       
 
                       <LoginButton>Continue</LoginButton>
