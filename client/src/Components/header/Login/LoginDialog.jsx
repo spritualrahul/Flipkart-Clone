@@ -11,8 +11,8 @@ width:100 vh;
 
 const Image=styled(Box)`
 background: #2874f0 url(https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/login_img_c4a81e.png)center 85% no-repeat;
-height:100%;
-width: 40%;
+height:80.8%;
+width: 28%;
 padding: 45px 35px;
    &>p, &> h5{
   color:white;
@@ -65,11 +65,15 @@ const CreateAccount = styled(Typography)`
 
 const accountInitialValues ={
   login:{
-       view : 'login'
+       view : 'login',
+       heading : 'login',
+       subheading :"Get access to your Orders, Wishlist and Recomendations"
   },
 
   signup:{
-       view: 'signup'
+       view: 'signup',
+       heading : "Looks like you are new Here!",
+       subheading :"Sign up with your Mobile no to get started"
   }
 }
 
@@ -79,7 +83,8 @@ export default function LoginDialog({open,setOpen}) {
   const [account, toggleAccount]=useState(accountInitialValues.login);
 
     const handleClose=()=>{
-        setOpen(true);
+        setOpen(false);
+        toggleAccount(accountInitialValues.login)
     }
 
     const toggleSignup = ()=>{
@@ -95,8 +100,8 @@ export default function LoginDialog({open,setOpen}) {
         <Component>
             <Box style={{display:"flex",height:"100%"}}>
             <Image>
-                <Typography variant='h5'>Login</Typography>
-                <Typography style={{marginTop:20}}>Get access to your orders, Wishlist and Recommendations</Typography>
+                <Typography variant='h5'>{account.heading}</Typography>
+                <Typography style={{marginTop:20}}>{account.subheading}</Typography>
             </Image>
             {
               account.view==='login'?

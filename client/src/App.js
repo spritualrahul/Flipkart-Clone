@@ -9,7 +9,7 @@ import {Box} from '@mui/material';
 function App() {
   return (
     <div>
-     <Header/>
+      <Header/>
      <Box style ={{marginTop:54}}>
      <Home/>
      </Box>
