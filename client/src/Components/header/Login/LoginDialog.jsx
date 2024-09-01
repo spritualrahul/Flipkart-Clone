@@ -2,6 +2,8 @@ import React from 'react'
 import { useState } from 'react';
 import{Dialog,Box,TextField,Button, Typography,styled} from'@mui/material';
 
+import { authenticatesSignup } from '../../../service/api';
+
 //css to MUI components
 const Component =styled(Box)`
 height:85vh;
@@ -90,6 +92,7 @@ const signUpInitialValues = {
 export default function LoginDialog({open,setOpen}) {
 
   const [account, toggleAccount]=useState(accountInitialValues.login);
+  const [signup,setSignup]=useState(signUpInitialValues);
 
     const handleClose=()=>{
         setOpen(false);
@@ -101,7 +104,13 @@ export default function LoginDialog({open,setOpen}) {
     }
 
     const onInputChange=(e)=>{
-      console.log(e.target.value);
+      setSignup({...signup,[e.target.name]:e.target.value});
+      console.log(signup);
+
+    }
+
+    const signupuser=async ()=>{
+      let response = await authenticatesSignup(signup);
 
     }
    
@@ -140,7 +149,7 @@ export default function LoginDialog({open,setOpen}) {
                       <TextField variant='standard' onChange={(e)=>onInputChange(e)} name='phone' label='Enter Phone'/>
                       
 
-                      <LoginButton>Continue</LoginButton>
+                      <LoginButton onClick={()=>signupuser()} >Continue</LoginButton>
                     </Wrapper>
             }
              
